@@ -1,0 +1,32 @@
+---
+// Bare A4 page used by scripts/generate-resume.mjs to print the PDF. Not linked or indexed.
+import "../../styles/global.css";
+import ResumeDocument from "../../components/ResumeDocument.astro";
+import profile from "../../data/profile.json";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <title>{profile.name} — Resume</title>
+    <style is:global>
+      @page {
+        size: A4;
+        margin: 0;
+      }
+      html,
+      body {
+        background: #ffffff !important;
+        margin: 0;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+    </style>
+  </head>
+  <body>
+    <ResumeDocument />
+  </body>
+</html>

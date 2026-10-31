@@ -1,0 +1,24 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Icon from "../components/Icon.astro";
+import { url } from "../lib/url";
+---
+
+<BaseLayout title="Page not found" description="This page doesn't exist." noindex>
+  <section class="grid-bg">
+    <div class="container-x flex min-h-[70vh] flex-col justify-center py-24">
+      <p class="eyebrow text-accent">Error 404</p>
+      <h1 class="mt-5 max-w-3xl text-[clamp(2.6rem,7vw,5.5rem)] leading-[1] font-semibold">
+        This route didn't make it to production.
+      </h1>
+      <p class="mt-6 max-w-xl text-lg text-muted">
+        The page you're looking for doesn't exist or has moved. Try one of these instead:
+      </p>
+      <div class="mt-9 flex flex-wrap gap-3">
+        <a href={url()} class="btn btn-primary"><Icon name="arrow-left" size={17} /> Back home</a>
+        <a href={url("projects/")} class="btn btn-ghost">Projects</a>
+        <a href={url("resume/")} class="btn btn-ghost">Resume</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

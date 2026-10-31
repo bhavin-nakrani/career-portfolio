@@ -1,0 +1,68 @@
+{
+  "openSource": {
+    "intro": "Listed on the official Symfony code contributors page as Bhavinkumar Nakrani.",
+    "contributorsUrl": "https://symfony.com/contributors/code",
+    "profileUrl": "https://connect.symfony.com/profile/bhavin4u",
+    "items": [
+      {
+        "repo": "symfony/symfony",
+        "number": 65260,
+        "title": "[Messenger][AmazonSqs] Support queue URLs from the aws-cn and aws-eusc partitions",
+        "date": "2026-08",
+        "note": "Merged and shipped in the Symfony v8.1.5 release.",
+        "url": "https://github.com/symfony/symfony/pull/65260"
+      },
+      {
+        "repo": "symfony/symfony",
+        "number": 65592,
+        "title": "Release v8.1.5 — includes my AmazonSqs fix",
+        "date": "2026-08",
+        "note": "Credited in the release changelog.",
+        "url": "https://github.com/symfony/symfony/pull/65592"
+      },
+      {
+        "repo": "symfony/symfony",
+        "number": 44852,
+        "title": "[Validators] Add translations for Slovak",
+        "date": "2022-01",
+        "note": "Merged.",
+        "url": "https://github.com/symfony/symfony/pull/44852"
+      },
+      {
+        "repo": "symfony/symfony-docs",
+        "number": 16336,
+        "title": "[Messenger] Doc update for async handler",
+        "date": "2021-12",
+        "note": "Merged.",
+        "url": "https://github.com/symfony/symfony-docs/pull/16336"
+      }
+    ]
+  },
+  "items": [
+    {
+      "title": "Employee of the Month & Employee of the Year",
+      "issuer": "Netclues Pvt Ltd and Galitein Technologies",
+      "type": "award"
+    },
+    {
+      "title": "Google IT Automation with Python",
+      "issuer": "Coursera · 2022",
+      "type": "certification"
+    },
+    {
+      "title": "On-site in Stuttgart, Germany",
+      "issuer": "Project and leadership meetings for Galitein Technologies",
+      "type": "travel"
+    },
+    {
+      "title": "A month in Bangkok, Thailand",
+      "issuer": "Product immersion and roadmap planning with GYDE",
+      "type": "travel"
+    },
+    {
+      "title": "Dubai & London",
+      "issuer": "Yearly planning with StableLogic and visits to the London office",
+      "type": "travel"
+    }
+  ]
+}

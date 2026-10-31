@@ -1,0 +1,91 @@
+{
+  "groups": [
+    {
+      "id": "ai",
+      "title": "AI & automation",
+      "blurb": "Applied AI shipped inside real products, not demos.",
+      "items": [
+        { "name": "AI agents & workflow automation", "level": "primary" },
+        { "name": "RAG pipelines", "level": "primary" },
+        { "name": "Prompt engineering", "level": "primary" },
+        { "name": "LLM training & fine-tuning", "level": "working" },
+        { "name": "OCR & document extraction", "level": "working" }
+      ]
+    },
+    {
+      "id": "backend",
+      "title": "Backend",
+      "blurb": "Sixteen years of PHP, with Python, Node.js and Java alongside.",
+      "items": [
+        { "name": "Symfony", "level": "primary" },
+        { "name": "Laravel", "level": "primary" },
+        { "name": "PHP (core, CodeIgniter, Zend, OpenCart)", "level": "primary" },
+        { "name": "Python (FastAPI, Flask)", "level": "primary" },
+        { "name": "Node.js (Express, NestJS)", "level": "working" },
+        { "name": "Java (Spring Boot)", "level": "working" }
+      ]
+    },
+    {
+      "id": "frontend",
+      "title": "Frontend",
+      "blurb": "Enough frontend depth to own a feature end-to-end.",
+      "items": [
+        { "name": "JavaScript", "level": "primary" },
+        { "name": "React", "level": "working" },
+        { "name": "Next.js", "level": "working" },
+        { "name": "jQuery & AJAX", "level": "primary" },
+        { "name": "Tailwind CSS & Bootstrap", "level": "primary" }
+      ]
+    },
+    {
+      "id": "data",
+      "title": "Data & messaging",
+      "blurb": "Relational design first, with caches, queues and search beside it.",
+      "items": [
+        { "name": "MySQL", "level": "primary" },
+        { "name": "PostgreSQL", "level": "primary" },
+        { "name": "Redis", "level": "primary" },
+        { "name": "RabbitMQ", "level": "primary" },
+        { "name": "MongoDB & NoSQL", "level": "working" },
+        { "name": "Elasticsearch", "level": "working" }
+      ]
+    },
+    {
+      "id": "cloud",
+      "title": "Cloud & DevOps",
+      "blurb": "From a bare Ubuntu box to a production AWS estate.",
+      "items": [
+        { "name": "AWS (Lambda, EC2, RDS, DocumentDB, S3, CloudFront, SQS, SNS, SES, API Gateway, Route 53, CloudWatch, CloudSearch, ELB)", "level": "primary" },
+        { "name": "Docker", "level": "primary" },
+        { "name": "CI/CD pipelines", "level": "primary" },
+        { "name": "Nginx, Apache & Ubuntu server setup", "level": "primary" },
+        { "name": "DNS, domains & security hardening", "level": "primary" },
+        { "name": "Varnish, cron & Supervisor", "level": "working" }
+      ]
+    },
+    {
+      "id": "apis",
+      "title": "APIs & integrations",
+      "blurb": "Connecting products to the systems businesses already run on.",
+      "items": [
+        { "name": "REST APIs & Swagger / OpenAPI", "level": "primary" },
+        { "name": "Payment gateways", "level": "primary" },
+        { "name": "Social & third-party APIs", "level": "primary" },
+        { "name": "GraphQL", "level": "working" },
+        { "name": "WHMCS, CRM & email-marketing systems", "level": "working" }
+      ]
+    },
+    {
+      "id": "delivery",
+      "title": "Quality & delivery",
+      "blurb": "Shipping predictably with a team, not just alone.",
+      "items": [
+        { "name": "PHPUnit (TDD) & Behat (BDD)", "level": "primary" },
+        { "name": "Code review & architecture", "level": "primary" },
+        { "name": "Git (GitHub, GitLab, Bitbucket)", "level": "primary" },
+        { "name": "Jira & Confluence", "level": "primary" },
+        { "name": "Team leadership & client handling", "level": "primary" }
+      ]
+    }
+  ]
+}

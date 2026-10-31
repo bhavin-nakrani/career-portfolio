@@ -1,0 +1,57 @@
+{
+  "name": "Bhavinkumar Nakrani",
+  "shortName": "Bhavin Nakrani",
+  "role": "Technical Project Manager",
+  "headline": "I build AI-powered products and the dependable platforms underneath them.",
+  "positioning": "Technical Project Manager and senior full-stack engineer with 16+ years of shipping ERP systems, booking platforms, SaaS products and AI agents for clients across Europe, the UK, Asia and the USA.",
+  "summary": [
+    "I'm a hands-on Technical Project Manager and senior full-stack engineer based in Ahmedabad, India. For 16+ years I've built products for clients and employers across Germany, the UK, Denmark, Thailand and India — from municipal portals and real-estate networks to ERP systems used on three continents.",
+    "My core is PHP (Symfony, Laravel) and Python, backed by AWS, DevOps and solid database design. Lately my focus is applied AI: LLM-powered agents, RAG pipelines, OCR and prompt engineering wired into real business workflows.",
+    "Today I lead a team of 10–13 people, yet around 80% of my day is still hands-on development. I'm a contributor to the Symfony framework and I enjoy turning ambiguous requirements into systems that stay maintainable for years."
+  ],
+  "resumeSummary": "Hands-on Technical Project Manager and senior full-stack engineer with 16+ years of building products for clients in Germany, the UK, Denmark, Thailand and India. Core in PHP (Symfony, Laravel) and Python with AWS and DevOps; currently focused on applied AI — LLM agents, RAG, OCR and prompt engineering in production. I lead a 10–13 person team while staying ~80% hands-on, and I contribute to the Symfony framework.",
+  "location": "Ahmedabad, Gujarat, India",
+  "email": "bhavin.it8488@gmail.com",
+  "nationality": "Indian",
+  "languages": [
+    "English",
+    "Hindi",
+    "Gujarati"
+  ],
+  "profileImage": "images/profile/portrait.webp",
+  "avatarImage": "images/profile/avatar.webp",
+  "resumePath": "documents/Bhavinkumar-Nakrani-Resume.pdf",
+  "focus": [
+    "AI agents & RAG",
+    "Symfony & Laravel",
+    "AWS & DevOps",
+    "Team leadership"
+  ],
+  "socialLinks": [
+    {
+      "id": "linkedin",
+      "label": "LinkedIn",
+      "url": "https://www.linkedin.com/in/bhavin-nakrani-4658726b"
+    },
+    {
+      "id": "github",
+      "label": "GitHub",
+      "url": "https://github.com/bhavin-nakrani"
+    },
+    {
+      "id": "symfony",
+      "label": "SymfonyConnect",
+      "url": "https://connect.symfony.com/profile/bhavin4u"
+    },
+    {
+      "id": "medium",
+      "label": "Medium",
+      "url": "https://bhavin-nakrani.medium.com/"
+    },
+    {
+      "id": "stackoverflow",
+      "label": "Stack Overflow",
+      "url": "https://stackoverflow.com/users/6056191/bhavin-nakrani"
+    }
+  ]
+}

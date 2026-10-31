@@ -1,0 +1,123 @@
+{
+  "roles": [
+    {
+      "id": "nexuslink",
+      "company": "Nexuslink Services Pvt Ltd",
+      "title": "Technical Project Manager",
+      "location": "Ahmedabad, India",
+      "startDate": "2025-12",
+      "endDate": null,
+      "summary": "Lead a 10–13 person team across client handling, development and delivery, while spending roughly 80% of my time hands-on in the code.",
+      "achievements": [
+        "Built Linkyfy, an AI-driven LinkedIn outreach SaaS, from an empty repository to production in two months — now serving 150+ customers.",
+        "Delivered KiViP-Concierge, an AI agent service where models do the work and a human concierge reviews it, end-to-end including DevOps.",
+        "Own client communication, estimation and delivery planning, splitting time roughly 20% team leadership and 80% engineering."
+      ],
+      "technologies": ["AI agents", "LLMs", "Python", "Laravel", "MySQL", "AWS", "DevOps"]
+    },
+    {
+      "id": "stablelogic",
+      "company": "StableLogic Ltd (London) for TEO International (Denmark)",
+      "title": "Senior Software Engineer",
+      "location": "Remote · London / Denmark",
+      "startDate": "2024-06",
+      "endDate": "2025-12",
+      "summary": "Built and scaled business platforms for European clients, from greenfield ERP systems to revenue-critical booking flows.",
+      "achievements": [
+        "Built the AlphaTheta (Pioneer DJ) ERP, CRM and customer repair portal from scratch, now used by 2,000+ agents and distributors across Europe, Asia and the USA.",
+        "Delivered a booking platform for EasyStorage (part of easyGroup) that increased orders and became a profitable channel.",
+        "Contributed AI features and new modules to Veroxos, StableLogic's enterprise telecom and asset-management product."
+      ],
+      "technologies": ["Symfony", "Laravel", "AI", "Java", "AWS", "PostgreSQL", "MySQL", "Redis", "DevOps"]
+    },
+    {
+      "id": "simform",
+      "company": "Simform Solutions",
+      "title": "Lead Software Engineer",
+      "location": "Ahmedabad, India",
+      "startDate": "2021-06",
+      "endDate": "2024-06",
+      "summary": "Worked across frontend and backend on microservice products in the auction, finance and ERP domains.",
+      "achievements": [
+        "Developed microservices in Symfony and Node.js for a product serving ~800 customers and up to 2 million user visits at peak time.",
+        "Built an ERP system from scratch and took it live within six months; around 500 distinct user roles now run their operations on it across regions.",
+        "Shaped long-term architecture with clients, translating business goals into technical roadmaps."
+      ],
+      "technologies": ["Symfony", "Laravel", "Node.js", "MySQL", "AWS", "Python", "DevOps"]
+    },
+    {
+      "id": "galitein-2",
+      "company": "Galitein Technologies",
+      "title": "Software Developer (Team Lead)",
+      "location": "Ahmedabad, India",
+      "startDate": "2019-05",
+      "endDate": "2021-05",
+      "summary": "Led microservice projects for government clients and fully automated event-ticketing systems.",
+      "achievements": [
+        "Built microservice-based government platforms engineered to absorb heavy traffic peaks during events and festival seasons.",
+        "Automated event-ticket sales across TicketUtils and StubHub with scraping and data pipelines that ran reliably without manual work.",
+        "Owned server infrastructure and system architecture while coordinating developers and designers."
+      ],
+      "technologies": ["Symfony", "PostgreSQL", "Python", "Node.js", "Scraping", "DevOps"]
+    },
+    {
+      "id": "gyde",
+      "company": "GYDE",
+      "title": "Backend Developer",
+      "location": "Bangkok, Thailand",
+      "startDate": "2017-08",
+      "endDate": "2019-07",
+      "summary": "Owned the backend and infrastructure of an in-taxi advertising product, working directly with investors and management.",
+      "achievements": [
+        "Built an ad-serving platform running in 1,000 taxis for 2,500 users and handling about 1 million requests per day.",
+        "Reached the product's business goals within 1.5 years, generating solid customer revenue.",
+        "Designed the system architecture and ran the server infrastructure; spent a month on-site in Bangkok to shape the roadmap."
+      ],
+      "technologies": ["Laravel", "MySQL", "Redis", "RabbitMQ", "AWS", "REST APIs", "DevOps"]
+    },
+    {
+      "id": "appdev",
+      "company": "AppDev Technolabs",
+      "title": "Technical Team Lead",
+      "location": "Ahmedabad, India",
+      "startDate": "2017-04",
+      "endDate": "2017-07",
+      "summary": "Led web development for clients in diverse industries and backed mobile teams with APIs.",
+      "achievements": [
+        "Assigned work, unblocked developers and built complex modules for client web projects.",
+        "Delivered backend APIs for mobile apps and handled backend deployment and app-store publishing."
+      ],
+      "technologies": ["PHP", "Laravel", "MySQL", "Mobile APIs"]
+    },
+    {
+      "id": "galitein-1",
+      "company": "Galitein Technologies",
+      "title": "Software Developer (Team Lead)",
+      "location": "Ahmedabad, India · Germany",
+      "startDate": "2014-08",
+      "endDate": "2017-03",
+      "summary": "Led the Indian development team for German client Goobing, with code review, TDD and BDD as standard practice.",
+      "achievements": [
+        "Built dongK, a German e-commerce shop with live ticking prices, on AWS.",
+        "Developed modules for hannover.de, the official portal of the City and Region of Hannover, on eZ Platform (Symfony) with a large database.",
+        "Travelled to Germany for project and leadership meetings with teams from multiple countries."
+      ],
+      "technologies": ["Symfony", "eZ Platform", "MySQL", "AWS", "Node.js", "RabbitMQ", "Redis", "Behat", "PHPUnit"]
+    },
+    {
+      "id": "netclues",
+      "company": "Netclues Pvt Ltd",
+      "title": "Software Developer (Team Lead)",
+      "location": "Ahmedabad, India",
+      "startDate": "2010-02",
+      "endDate": "2014-07",
+      "summary": "Built and maintained client websites and in-house products across real estate, hosting and small business.",
+      "achievements": [
+        "Ran a large Cayman Islands real-estate database powering 50+ real-estate websites for different companies.",
+        "Built in-house products that cut third-party server and email-marketing costs by up to 30%.",
+        "Delivered domain and hosting services built on WHMCS, plus R&D on complex project modules."
+      ],
+      "technologies": ["PHP", "CodeIgniter", "WHMCS", "MySQL", "JavaScript", "DevOps"]
+    }
+  ]
+}

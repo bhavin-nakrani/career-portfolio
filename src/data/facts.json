@@ -1,0 +1,8 @@
+{
+  "items": [
+    { "value": "16+", "label": "years building and shipping web products" },
+    { "value": "2M", "label": "user visits served at peak on a microservice platform" },
+    { "value": "2,000+", "label": "agents & distributors on an ERP built from scratch" },
+    { "value": "OSS", "label": "listed contributor to the Symfony framework" }
+  ]
+}
