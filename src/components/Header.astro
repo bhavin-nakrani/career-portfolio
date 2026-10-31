@@ -1,0 +1,110 @@
+---
+import Icon from "./Icon.astro";
+import profile from "../data/profile.json";
+import { url } from "../lib/url";
+
+const nav = [
+  { label: "About", href: `${url()}#about` },
+  { label: "Experience", href: `${url()}#experience` },
+  { label: "Projects", href: url("projects/") },
+  { label: "Skills", href: `${url()}#skills` },
+  { label: "Contact", href: `${url()}#contact` },
+];
+---
+
+<header class="sticky top-0 z-50 border-b border-line/70 bg-bg/80 backdrop-blur-md">
+  <div class="container-x flex h-[4.5rem] items-center justify-between gap-6">
+    <a href={url()} class="group flex items-center gap-3" aria-label={`${profile.name} — home`}>
+      <span
+        class="grid size-9 place-items-center rounded-xl border border-line bg-surface font-display text-sm font-bold transition-colors group-hover:border-accent"
+        aria-hidden="true">BN</span
+      >
+      <span class="hidden font-display text-[1.05rem] font-semibold tracking-tight sm:inline">
+        {profile.shortName}<span class="text-accent">.</span>
+      </span>
+    </a>
+
+    <nav aria-label="Main" class="hidden md:block">
+      <ul class="flex items-center gap-1">
+        {
+          nav.map((item) => (
+            <li>
+              <a
+                href={item.href}
+                class="rounded-full px-3.5 py-2 text-[0.92rem] text-muted transition-colors hover:bg-surface hover:text-ink"
+              >
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+
+    <div class="flex items-center gap-2">
+      <a href={url("resume/")} class="btn btn-primary hidden !min-h-10 !py-2 sm:inline-flex">
+        Resume
+      </a>
+
+      <details class="mobile-nav md:hidden">
+        <summary
+          class="grid size-11 cursor-pointer list-none place-items-center rounded-full border border-line text-ink [&::-webkit-details-marker]:hidden"
+          aria-label="Open menu"
+        >
+          <Icon name="menu" size={20} class="icon-open" />
+          <Icon name="x" size={20} class="icon-close hidden" />
+        </summary>
+        <nav
+          aria-label="Mobile"
+          class="absolute inset-x-0 top-full max-h-[calc(100dvh-4.5rem)] overflow-y-auto border-b border-line bg-bg px-5 pt-4 pb-8"
+        >
+          <ul class="flex flex-col">
+            {
+              nav.map((item) => (
+                <li>
+                  <a
+                    href={item.href}
+                    class="flex min-h-12 items-center border-b border-line/60 font-display text-2xl font-medium"
+                  >
+                    {item.label}
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+          <a href={url("resume/")} class="btn btn-primary mt-6 w-full">Resume</a>
+        </nav>
+      </details>
+    </div>
+  </div>
+</header>
+
+<style>
+  /* Icon is a child component, so target its SVGs globally. */
+  .mobile-nav[open] :global(.icon-open) {
+    display: none;
+  }
+  .mobile-nav[open] :global(.icon-close) {
+    display: block;
+  }
+</style>
+
+<script>
+  // Close the mobile menu on navigation, Escape, or outside click. Works without JS too.
+  const menu = document.querySelector<HTMLDetailsElement>(".mobile-nav");
+  if (menu) {
+    const summary = menu.querySelector("summary");
+    const sync = () => summary?.setAttribute("aria-label", menu.open ? "Close menu" : "Open menu");
+    menu.addEventListener("toggle", sync);
+    menu.querySelectorAll("a").forEach((a) => a.addEventListener("click", () => (menu.open = false)));
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && menu.open) {
+        menu.open = false;
+        summary?.focus();
+      }
+    });
+    document.addEventListener("click", (e) => {
+      if (menu.open && !menu.contains(e.target as Node)) menu.open = false;
+    });
+  }
+</script>

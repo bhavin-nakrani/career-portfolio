@@ -1,0 +1,409 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SectionHeading from "../components/SectionHeading.astro";
+import ProjectCard from "../components/ProjectCard.astro";
+import Icon from "../components/Icon.astro";
+import { socialIcon, type SocialId } from "../components/SocialIcon";
+import profile from "../data/profile.json";
+import facts from "../data/facts.json";
+import experience from "../data/experience.json";
+import skills from "../data/skills.json";
+import education from "../data/education.json";
+import achievements from "../data/achievements.json";
+import { absoluteUrl, duration, formatMonth, url } from "../lib/url";
+
+const featured = (await getCollection("projects", ({ data }) => data.featured)).sort(
+  (a, b) => a.data.order - b.data.order,
+);
+
+const aiFocus = [
+  {
+    title: "AI agents",
+    text: "Agents that take a brief and carry out multi-step work, with a human checkpoint where quality matters.",
+  },
+  {
+    title: "RAG pipelines",
+    text: "Retrieval over a customer's own documents and data, so answers stay grounded and private.",
+  },
+  {
+    title: "Prompt engineering",
+    text: "Versioned prompts that turn messy inputs into consistent, on-brand output at scale.",
+  },
+  {
+    title: "OCR & extraction",
+    text: "Turning scanned documents and unstructured text into structured data that systems can act on.",
+  },
+];
+
+const highlightIcon = { award: "award", travel: "plane" } as const;
+
+const personLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: profile.name,
+  jobTitle: profile.role,
+  description: profile.positioning,
+  email: `mailto:${profile.email}`,
+  image: absoluteUrl(profile.avatarImage, Astro.site),
+  url: absoluteUrl("", Astro.site),
+  address: { "@type": "PostalAddress", addressLocality: "Ahmedabad", addressRegion: "Gujarat", addressCountry: "IN" },
+  alumniOf: { "@type": "CollegeOrUniversity", name: "Saurashtra University" },
+  knowsAbout: ["Artificial intelligence", "AI agents", "Retrieval-augmented generation", "Symfony", "Laravel", "PHP", "Python", "AWS", "DevOps"],
+  knowsLanguage: profile.languages,
+  sameAs: profile.socialLinks.map((l) => l.url),
+};
+const websiteLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: profile.name,
+  url: absoluteUrl("", Astro.site),
+};
+---
+
+<BaseLayout ogType="profile" jsonLd={[personLd, websiteLd]}>
+  <!-- Hero -->
+  <section class="grid-bg relative overflow-hidden" aria-labelledby="hero-title">
+    <div
+      class="pointer-events-none absolute -top-40 right-[-10%] size-[42rem] rounded-full bg-accent/10 blur-3xl"
+      aria-hidden="true"
+    >
+    </div>
+    <div class="container-x relative grid gap-12 pt-14 pb-20 md:pt-20 lg:grid-cols-12 lg:gap-10 lg:pt-24 lg:pb-28">
+      <div class="flex flex-col justify-center lg:col-span-7">
+        <p class="eyebrow mb-6 flex flex-wrap items-center gap-x-3 gap-y-2">
+          <span class="inline-flex items-center gap-2 text-ink">
+            <span class="relative flex size-2">
+              <span class="absolute inline-flex size-full animate-ping rounded-full bg-accent opacity-60 motion-reduce:hidden"
+              ></span>
+              <span class="relative inline-flex size-2 rounded-full bg-accent"></span>
+            </span>
+            {profile.role}
+          </span>
+          <span class="text-line" aria-hidden="true">/</span>
+          <span class="inline-flex items-center gap-1.5"><Icon name="map-pin" size={13} />{profile.location}</span>
+        </p>
+        <h1 id="hero-title" class="text-[clamp(2.6rem,7vw,5.6rem)] leading-[0.98] font-semibold">
+          {profile.name.split(" ")[0]}<br />
+          <span class="text-muted">{profile.name.split(" ").slice(1).join(" ")}</span>
+        </h1>
+        <p class="mt-7 max-w-2xl font-display text-[clamp(1.25rem,2.3vw,1.7rem)] leading-snug text-ink">
+          {profile.headline}
+        </p>
+        <p class="mt-5 max-w-xl text-muted">{profile.positioning}</p>
+
+        <div class="mt-9 flex flex-wrap gap-3">
+          <a href={url("projects/")} class="btn btn-primary">
+            View selected work <Icon name="arrow-right" size={17} />
+          </a>
+          <a href={url(profile.resumePath)} class="btn btn-ghost" download>
+            <Icon name="download" size={17} /> Download resume
+          </a>
+        </div>
+
+        <ul class="mt-9 flex flex-wrap gap-2" aria-label="Profiles">
+          {
+            profile.socialLinks.slice(0, 2).map((l) => (
+              <li>
+                <a
+                  href={l.url}
+                  target="_blank"
+                  rel="me noopener"
+                  class="inline-flex min-h-11 items-center gap-2 rounded-full border border-line px-4 text-sm text-muted transition-colors hover:border-muted hover:text-ink"
+                >
+                  <Icon name={socialIcon[l.id as SocialId]} size={16} />
+                  {l.label}
+                </a>
+              </li>
+            ))
+          }
+          <li>
+            <a
+              href={`mailto:${profile.email}`}
+              class="inline-flex min-h-11 items-center gap-2 rounded-full border border-line px-4 text-sm text-muted transition-colors hover:border-muted hover:text-ink"
+            >
+              <Icon name="mail" size={16} /> Email
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="lg:col-span-5">
+        <figure class="relative mx-auto max-w-md lg:max-w-none">
+          <div class="overflow-hidden rounded-[2rem] border border-line bg-surface">
+            <img
+              src={url(profile.profileImage)}
+              alt={`Portrait of ${profile.name}`}
+              width="960"
+              height="1200"
+              fetchpriority="high"
+              class="aspect-[4/5] w-full object-cover"
+            />
+          </div>
+          <figcaption
+            class="absolute -bottom-5 left-5 right-5 flex flex-wrap gap-2 rounded-2xl border border-line bg-bg/85 p-3 backdrop-blur-md sm:left-auto sm:-right-4 sm:max-w-[19rem]"
+          >
+            <span class="sr-only">Current focus:</span>
+            {profile.focus.map((f, i) => <span class:list={["tag", i === 0 && "!border-accent/60 !text-accent"]}>{f}</span>)}
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quick facts -->
+  <section aria-label="Quick facts" class="border-y border-line">
+    <div class="container-x !px-0 sm:!px-8 lg:!px-14">
+      <dl class="grid grid-cols-2 gap-px bg-line sm:border-x sm:border-line lg:grid-cols-4">
+        {
+          facts.items.map((f) => (
+            <div class="flex flex-col gap-2 bg-bg px-5 py-8 sm:px-8 lg:py-10">
+              <dt class="order-2 text-sm text-muted">{f.label}</dt>
+              <dd class="order-1 font-display text-[clamp(2rem,4vw,3rem)] leading-none font-semibold">{f.value}</dd>
+            </div>
+          ))
+        }
+      </dl>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="container-x py-24 md:py-32" aria-labelledby="about-title">
+    <SectionHeading index="01" eyebrow="About" title="Engineer first, lead second, still shipping." id="about-title" />
+    <div class="grid gap-12 md:grid-cols-12">
+      <div class="space-y-5 text-[1.1rem] text-muted md:col-span-7 md:col-start-4" data-reveal>
+        {profile.summary.map((p, i) => <p class:list={[i === 0 && "text-ink"]}>{p}</p>)}
+      </div>
+    </div>
+
+    <div class="mt-20 grid gap-4 sm:grid-cols-2 lg:grid-cols-4" data-reveal>
+      <p class="eyebrow col-span-full mb-2 flex items-center gap-2 text-accent">
+        <Icon name="sparkles" size={14} /> Where AI fits in my work
+      </p>
+      {
+        aiFocus.map((item) => (
+          <div class="card p-6">
+            <h3 class="text-lg font-semibold">{item.title}</h3>
+            <p class="mt-2 text-[0.95rem] text-muted">{item.text}</p>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <!-- Selected projects -->
+  <section id="projects" class="border-t border-line py-24 md:py-32" aria-labelledby="projects-title">
+    <div class="container-x">
+      <SectionHeading index="02" eyebrow="Selected work" title="Products I've taken from blank page to production." id="projects-title" />
+      <ul class="grid gap-6 md:grid-cols-2">
+        {
+          featured.map((p) => (
+            <li data-reveal>
+              <ProjectCard project={p} />
+            </li>
+          ))
+        }
+      </ul>
+      <div class="mt-12 flex justify-center">
+        <a href={url("projects/")} class="btn btn-ghost">
+          View all projects <Icon name="arrow-right" size={17} />
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience -->
+  <section id="experience" class="border-t border-line py-24 md:py-32" aria-labelledby="experience-title">
+    <div class="container-x">
+      <SectionHeading index="03" eyebrow="Experience" title="Sixteen years, eight teams, four countries." id="experience-title" />
+      <ol class="relative md:ml-[25%]">
+        {
+          experience.roles.map((role, i) => (
+            <li class="relative grid gap-4 border-l border-line pb-14 pl-8 last:pb-0 md:pl-12" data-reveal>
+              <span
+                class:list={[
+                  "absolute top-1.5 -left-[7px] size-3.5 rounded-full border-2",
+                  i === 0 ? "border-accent bg-accent" : "border-line bg-bg",
+                ]}
+                aria-hidden="true"
+              />
+              <p class="eyebrow">
+                {formatMonth(role.startDate)} — {formatMonth(role.endDate)}
+                <span class="text-line"> · </span>
+                {duration(role.startDate, role.endDate)}
+              </p>
+              <div>
+                <h3 class="text-2xl font-semibold">{role.title}</h3>
+                <p class="mt-1 text-ink/90">
+                  {role.company}
+                  <span class="text-muted"> · {role.location}</span>
+                </p>
+              </div>
+              <p class="max-w-2xl text-muted">{role.summary}</p>
+              <ul class="max-w-2xl space-y-2.5">
+                {role.achievements.map((a) => (
+                  <li class="relative pl-6 text-[0.98rem] text-muted before:absolute before:top-[0.7em] before:left-0 before:h-px before:w-3 before:bg-accent">
+                    {a}
+                  </li>
+                ))}
+              </ul>
+              <ul class="flex flex-wrap gap-2" aria-label="Technologies">
+                {role.technologies.map((t) => (
+                  <li class="tag">{t}</li>
+                ))}
+              </ul>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section id="skills" class="border-t border-line bg-surface/30 py-24 md:py-32" aria-labelledby="skills-title">
+    <div class="container-x">
+      <SectionHeading index="04" eyebrow="Skills" title="A full-stack toolkit, grounded in production." id="skills-title" />
+      <p class="mb-8 flex flex-wrap items-center gap-5 text-sm text-muted md:ml-[25%]">
+        <span class="inline-flex items-center gap-2"><span class="size-2.5 rounded-full bg-accent"></span> Primary — daily, production use</span>
+        <span class="inline-flex items-center gap-2"><span class="size-2.5 rounded-full border border-muted"></span> Working knowledge</span>
+      </p>
+      <div class="gap-5 md:columns-2 lg:columns-3">
+        {
+          skills.groups.map((group, i) => (
+            <section
+              class:list={["card mb-5 flex break-inside-avoid flex-col gap-4 p-6 sm:p-7", i === 0 && "border-accent/40"]}
+              aria-labelledby={`skill-${group.id}`}
+              data-reveal
+            >
+              <div>
+                <h3 id={`skill-${group.id}`} class="flex items-center gap-2 text-xl font-semibold">
+                  {i === 0 && <Icon name="sparkles" size={18} class="text-accent" />}
+                  {group.title}
+                </h3>
+                <p class="mt-1 text-sm text-muted">{group.blurb}</p>
+              </div>
+              <ul class="flex flex-wrap gap-2">
+                {group.items.map((s) => (
+                  <li
+                    class:list={[
+                      "rounded-lg border px-3 py-1.5 text-[0.88rem]",
+                      s.level === "primary" ? "border-accent/35 bg-accent/[0.06] text-ink" : "border-line text-muted",
+                    ]}
+                  >
+                    {s.name}
+                    <span class="sr-only">({s.level === "primary" ? "primary" : "working knowledge"})</span>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Highlights -->
+  <section id="highlights" class="border-t border-line py-24 md:py-32" aria-labelledby="highlights-title">
+    <div class="container-x">
+      <SectionHeading index="05" eyebrow="Highlights" title="Open source, recognition and the road." id="highlights-title" />
+      <div class="grid gap-6 lg:grid-cols-12">
+        <div class="card p-6 sm:p-8 lg:col-span-7" data-reveal>
+          <div class="flex flex-wrap items-start justify-between gap-4">
+            <div>
+              <p class="eyebrow flex items-center gap-2 text-accent"><Icon name="git-pull-request" size={14} /> Symfony contributor</p>
+              <h3 class="mt-3 text-2xl font-semibold">Merged into the framework I use every day</h3>
+            </div>
+          </div>
+          <p class="mt-3 text-muted">
+            {achievements.openSource.intro}{" "}
+            <a href={achievements.openSource.contributorsUrl} class="text-accent underline underline-offset-4" target="_blank" rel="noopener">See the list</a>
+            {" "}or my <a href={achievements.openSource.profileUrl} class="text-accent underline underline-offset-4" target="_blank" rel="noopener">SymfonyConnect profile</a>.
+          </p>
+          <ul class="mt-6 divide-y divide-line border-t border-line">
+            {
+              achievements.openSource.items.map((pr) => (
+                <li>
+                  <a href={pr.url} target="_blank" rel="noopener" class="group flex items-start gap-4 py-4">
+                    <span class="mt-0.5 font-mono text-xs whitespace-nowrap text-muted">#{pr.number}</span>
+                    <span class="flex-1">
+                      <span class="block text-[0.98rem] text-ink group-hover:text-accent">{pr.title}</span>
+                      <span class="mt-1 block font-mono text-xs text-muted">
+                        {pr.repo} · {formatMonth(pr.date)} · {pr.note}
+                      </span>
+                    </span>
+                    <Icon name="arrow-up-right" size={16} class="mt-1 shrink-0 text-muted group-hover:text-accent" />
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+
+        <div class="flex flex-col gap-6 lg:col-span-5">
+          <ul class="card divide-y divide-line" data-reveal>
+            {
+              achievements.items.filter((item) => item.type !== "certification").map((item) => (
+                <li class="flex gap-4 p-5 sm:px-7">
+                  <span class="mt-0.5 grid size-9 shrink-0 place-items-center rounded-xl border border-line text-accent">
+                    <Icon name={highlightIcon[item.type as keyof typeof highlightIcon]} size={17} />
+                  </span>
+                  <span>
+                    <span class="block font-medium text-ink">{item.title}</span>
+                    <span class="block text-sm text-muted">{item.issuer}</span>
+                  </span>
+                </li>
+              ))
+            }
+          </ul>
+          <div class="card p-6 sm:px-7" data-reveal>
+            <p class="eyebrow">Education</p>
+            <ul class="mt-4 space-y-4">
+              {
+                education.items.map((e) => (
+                  <li>
+                    <p class="font-medium text-ink">{e.qualification} · {e.field}</p>
+                    <p class="text-sm text-muted">{e.institution} · {e.endYear}</p>
+                  </li>
+                ))
+              }
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="grid-bg relative overflow-hidden border-t border-line" aria-labelledby="contact-title">
+    <div class="pointer-events-none absolute bottom-[-30%] left-[-10%] size-[36rem] rounded-full bg-accent-2/10 blur-3xl" aria-hidden="true"></div>
+    <div class="container-x relative py-24 md:py-36">
+      <p class="eyebrow flex items-center gap-3"><span class="text-accent">06</span><span class="h-px w-8 bg-line"></span>Contact</p>
+      <h2 id="contact-title" class="mt-6 max-w-4xl text-[clamp(2.4rem,6.5vw,5rem)] leading-[1.02] font-semibold" data-reveal>
+        Have a product to build, a team to lead or an AI idea to ship?
+      </h2>
+      <p class="mt-6 max-w-xl text-lg text-muted" data-reveal>
+        I'm open to conversations about senior engineering, technical leadership and AI product roles, as well as interesting contract work.
+      </p>
+      <div class="mt-10 flex flex-wrap gap-3" data-reveal>
+        <a href={`mailto:${profile.email}`} class="btn btn-primary !min-h-13 !px-7 !text-base">
+          <Icon name="mail" size={18} /> {profile.email}
+        </a>
+        <a href={url(profile.resumePath)} class="btn btn-ghost !min-h-13 !px-6" download>
+          <Icon name="download" size={18} /> Resume (PDF)
+        </a>
+      </div>
+      <ul class="mt-12 flex flex-wrap gap-x-8 gap-y-3" aria-label="Profiles" data-reveal>
+        {
+          profile.socialLinks.map((l) => (
+            <li>
+              <a href={l.url} target="_blank" rel="me noopener" class="inline-flex min-h-11 items-center gap-2 text-muted transition-colors hover:text-ink">
+                <Icon name={socialIcon[l.id as SocialId]} size={18} />
+                <span class="link-underline">{l.label}</span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+</BaseLayout>

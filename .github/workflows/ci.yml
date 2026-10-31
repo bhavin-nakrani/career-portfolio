@@ -1,0 +1,23 @@
+name: Build check
+
+on:
+  # Validate every push to dev and every pull request into master, without deploying.
+  push:
+    branches: ["dev"]
+  pull_request:
+    branches: ["master"]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm run build

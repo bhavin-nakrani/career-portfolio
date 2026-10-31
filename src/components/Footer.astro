@@ -1,0 +1,32 @@
+---
+import profile from "../data/profile.json";
+import { url } from "../lib/url";
+
+const year = new Date().getFullYear();
+const primary = profile.socialLinks.filter((l) => ["linkedin", "github"].includes(l.id));
+---
+
+<footer class="border-t border-line">
+  <div
+    class="container-x flex flex-col gap-6 py-10 text-sm text-muted sm:flex-row sm:items-center sm:justify-between"
+  >
+    <p>
+      © {year}
+      {profile.name}. Built with Astro, hosted on GitHub Pages.
+    </p>
+    <ul class="flex flex-wrap gap-x-6 gap-y-2">
+      <li><a class="link-underline hover:text-ink" href={url("projects/")}>Projects</a></li>
+      <li><a class="link-underline hover:text-ink" href={url("resume/")}>Resume</a></li>
+      {
+        primary.map((l) => (
+          <li>
+            <a class="link-underline hover:text-ink" href={l.url} rel="me noopener" target="_blank">
+              {l.label}
+            </a>
+          </li>
+        ))
+      }
+      <li><a class="link-underline hover:text-ink" href={`mailto:${profile.email}`}>Email</a></li>
+    </ul>
+  </div>
+</footer>

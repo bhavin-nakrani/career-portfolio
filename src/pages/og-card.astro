@@ -1,0 +1,44 @@
+---
+// 1200×630 social card, captured to public/og/default.png by scripts/generate-resume.mjs. Not linked or indexed.
+import "../styles/global.css";
+import profile from "../data/profile.json";
+import { url } from "../lib/url";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="robots" content="noindex" />
+    <title>Social card</title>
+    <style is:global>
+      html,
+      body {
+        margin: 0;
+        width: 1200px;
+        height: 630px;
+        overflow: hidden;
+      }
+    </style>
+  </head>
+  <body class="grid-bg relative bg-bg">
+    <div class="absolute -top-48 -right-24 size-[40rem] rounded-full bg-accent/15 blur-3xl"></div>
+    <div class="relative flex h-full items-stretch">
+      <div class="flex flex-1 flex-col justify-between p-16">
+        <p class="eyebrow flex items-center gap-3 !text-sm text-ink">
+          <span class="size-2.5 rounded-full bg-accent"></span>{profile.role} · AI · Symfony · Laravel · AWS
+        </p>
+        <div>
+          <h1 class="text-[5.4rem] leading-[0.95] font-semibold">
+            Bhavinkumar<br /><span class="text-muted">Nakrani</span>
+          </h1>
+          <p class="mt-6 max-w-[38rem] font-display text-[1.7rem] leading-snug text-ink">{profile.headline}</p>
+        </div>
+        <p class="font-mono text-base text-muted">bhavin-nakrani.github.io/career-portfolio</p>
+      </div>
+      <div class="relative w-[420px] shrink-0 overflow-hidden border-l border-line">
+        <img src={url(profile.profileImage)} alt="" class="size-full object-cover" />
+      </div>
+    </div>
+  </body>
+</html>

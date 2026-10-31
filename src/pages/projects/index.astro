@@ -1,0 +1,100 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import ProjectCard from "../../components/ProjectCard.astro";
+
+const projects = (await getCollection("projects")).sort((a, b) => a.data.order - b.data.order);
+const categories = [...new Set(projects.map((p) => p.data.category))];
+---
+
+<BaseLayout
+  title="Projects"
+  description="Selected projects by Bhavinkumar Nakrani — AI products, enterprise systems, booking and commerce platforms, and public-sector portals."
+>
+  <section class="grid-bg border-b border-line">
+    <div class="container-x py-16 md:py-24">
+      <p class="eyebrow">Projects · {projects.length} case studies</p>
+      <h1 class="mt-5 max-w-4xl text-[clamp(2.6rem,6.5vw,5rem)] leading-[1.02] font-semibold">
+        Work that's live, used and still running.
+      </h1>
+      <p class="mt-6 max-w-2xl text-lg text-muted">
+        A selection from 16 years of client and product work, newest first. Each case study separates what the team
+        shipped from what I personally built. These are just the highlights — I've worked on many more projects over the years.
+      </p>
+    </div>
+  </section>
+
+  <section class="container-x py-14 md:py-20" aria-label="Project list">
+    <div class="mb-10 flex flex-wrap gap-2" role="group" aria-label="Filter projects by category" data-filters hidden>
+      <button type="button" class="filter-chip" aria-pressed="true" data-filter="all">All</button>
+      {
+        categories.map((c) => (
+          <button type="button" class="filter-chip" aria-pressed="false" data-filter={c}>
+            {c}
+          </button>
+        ))
+      }
+    </div>
+    <p class="sr-only" aria-live="polite" data-filter-status></p>
+
+    <ul class="grid gap-6 md:grid-cols-2 lg:grid-cols-3" data-project-list>
+      {
+        projects.map((p, i) => (
+          <li data-category={p.data.category}>
+            <ProjectCard project={p} headingLevel="h2" eager={i < 3} />
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+</BaseLayout>
+
+<style>
+  .filter-chip {
+    min-height: 2.75rem;
+    padding: 0 1.1rem;
+    border-radius: 9999px;
+    border: 1px solid var(--color-line);
+    color: var(--color-muted);
+    font-size: 0.92rem;
+    transition:
+      color 180ms,
+      border-color 180ms,
+      background-color 180ms;
+    cursor: pointer;
+  }
+  .filter-chip:hover {
+    color: var(--color-ink);
+    border-color: var(--color-muted);
+  }
+  .filter-chip[aria-pressed="true"] {
+    background: var(--color-accent);
+    border-color: var(--color-accent);
+    color: var(--color-bg);
+    font-weight: 600;
+  }
+</style>
+
+<script>
+  // Category filter. Without JS the bar stays hidden and every project is listed.
+  const bar = document.querySelector<HTMLElement>("[data-filters]");
+  const items = document.querySelectorAll<HTMLElement>("[data-project-list] > li");
+  const status = document.querySelector<HTMLElement>("[data-filter-status]");
+  if (bar) {
+    bar.hidden = false;
+    const buttons = bar.querySelectorAll<HTMLButtonElement>("button");
+    buttons.forEach((btn) =>
+      btn.addEventListener("click", () => {
+        const filter = btn.dataset.filter;
+        buttons.forEach((b) => b.setAttribute("aria-pressed", String(b === btn)));
+        let shown = 0;
+        items.forEach((li) => {
+          const match = filter === "all" || li.dataset.category === filter;
+          li.hidden = !match;
+          if (match) shown++;
+        });
+        if (status) status.textContent = `Showing ${shown} project${shown === 1 ? "" : "s"}`;
+      }),
+    );
+  }
+</script>

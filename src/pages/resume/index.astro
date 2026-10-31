@@ -1,0 +1,32 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import ResumeDocument from "../../components/ResumeDocument.astro";
+import Icon from "../../components/Icon.astro";
+import profile from "../../data/profile.json";
+import { url } from "../../lib/url";
+---
+
+<BaseLayout
+  title="Resume"
+  description="Resume of Bhavinkumar Nakrani — Technical Project Manager and AI-focused full-stack engineer. View online or download the PDF."
+>
+  <section class="grid-bg border-b border-line">
+    <div class="container-x flex flex-col gap-8 py-14 md:flex-row md:items-end md:justify-between md:py-20">
+      <div>
+        <p class="eyebrow">Resume</p>
+        <h1 class="mt-4 text-[clamp(2.4rem,6vw,4.4rem)] font-semibold">The two-page version.</h1>
+        <p class="mt-4 max-w-xl text-muted">
+          Everything on this site, condensed for hiring teams. The PDF has selectable text and works with applicant
+          tracking systems.
+        </p>
+      </div>
+      <a href={url(profile.resumePath)} class="btn btn-primary shrink-0" download>
+        <Icon name="download" size={18} /> Download PDF
+      </a>
+    </div>
+  </section>
+
+  <div class="overflow-x-clip bg-[#07090b] px-4 py-12 md:py-16">
+    <ResumeDocument />
+  </div>
+</BaseLayout>

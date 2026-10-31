@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://bhavin-nakrani.github.io/career-portfolio/sitemap-index.xml
